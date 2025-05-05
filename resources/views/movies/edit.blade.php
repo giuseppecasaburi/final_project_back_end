@@ -1,5 +1,5 @@
 <h1>Io sono la edit di Movies</h1>
-<form action="{{route("movies.update", $movie->id)}}" method="POST">
+<form action="{{route("movies.update", $movie->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method("PUT")
 
@@ -24,6 +24,18 @@
         <span>minuti</span>
     </div>
 
+    <div class="">
+        <label for="image">Sostituisci la locandina</label>
+        <input type="file" name="image" id="">
+
+        @if($movie->image)
+            <img src="{{asset("storage/" . $movie->image)}}" alt="locandina" style="width: 10%">
+            <label for="remove">Rimuovi la locandina</label>
+            <input type="checkbox" name="remove" id="" value="1">
+        @endif
+    </div>
+
     <button type="submit">Modifica Film</button>
 
 </form>
+<a href="{{route("movies.show", $movie->id)}}">Annulla</a>

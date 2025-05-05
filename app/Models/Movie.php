@@ -6,11 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Director;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Movie extends Model
 {
 
     use SoftDeletes;
+
+    protected static function booted() {
+
+        // Metodo eseguito al forceDeleted di un'istanza di Movie
+        static::forceDeleted(function (Movie $movie){
+            // Controllo se l'immagine esiste
+            if($movie->image && Storage::disk("public")->exists($movie->image)) {
+                Storage::disk("public")->delete($movie->image);
+            }
+        });
+    }
 
     // Definizione relazione 1:N con la tabella Directors attraverso il model
     public function director() {

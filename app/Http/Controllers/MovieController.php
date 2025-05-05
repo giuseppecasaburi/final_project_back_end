@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -37,6 +38,13 @@ class MovieController extends Controller
         $newMovie->story = $data["story"];
         $newMovie->year_of_publication = $data["year_of_publication"];
         $newMovie->duration = $data["duration"];
+
+        if(array_key_exists("image", $data)) {
+            // Crea un nome univoco, la cartella "locandine se non la trova", salva il file e ritorna il path;
+            $img_path = Storage::putFile("locandine", $data["image"]);
+
+            $newMovie->image = $img_path;
+        }
         
         $newMovie->save();
 
@@ -74,6 +82,24 @@ class MovieController extends Controller
         $movie->story = $data["story"];
         $movie->year_of_publication = $data["year_of_publication"];
         $movie->duration = $data["duration"];
+
+        if(array_key_exists("image", $data)) {
+            // Elimina vecchia
+            if($movie->image && Storage::disk("public")->exists($movie->image)) {
+                Storage::disk("public")->delete($movie->image);
+            }
+            
+            // Aggiungi nuova
+            $img_path = Storage::putFile("locandine", $data["image"]);
+
+            // Aggiorna db
+            $movie->image = $img_path;
+        }
+
+        if(array_key_exists("remove", $data)) {
+            Storage::disk("public")->delete($movie->image);
+            $movie->image = null;
+        }
 
         $movie->save();
 

@@ -1,5 +1,10 @@
 <h1>Io sono la show dei movies</h1>
     <h3>{{ $movie->title }}</h3>
+    @if ($movie->image)
+        <div >
+            <img src="{{asset("storage/" . $movie->image)}}" style="width: 10%" alt="locandina del film">
+        </div>
+    @endif
     <p>Storia: {{ $movie->story }}</p>
     <p>Anno di pubblicazione: {{ $movie->year_of_publication }}</p>
     <span>Durata: {{ $movie->duration }}</span><br>
