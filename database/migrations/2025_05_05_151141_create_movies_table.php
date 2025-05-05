@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string("title");
             $table->text("story");
             $table->date("year_of_publication");
-            $table->tinyInteger("duration");
-            $table->bigInteger("director_id")->unsigned();
+            $table->smallInteger("duration");
+            $table->bigInteger("director_id")->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign("director_id")
