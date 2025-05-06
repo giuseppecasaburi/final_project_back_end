@@ -1,3 +1,12 @@
+<!-- jQuery (obbligatorio per Select2) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- CSS Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- JS Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <h1>Io sono la create di Movies</h1>
 <form action="{{route("movies.store")}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -24,6 +33,15 @@
     </div>
 
     <div class="">
+        <label for="genres">Genere</label>
+        <select name="genres[]" multiple class="form-control select2" id="">
+            @foreach ($genres as $genre)
+                <option value="{{$genre->id}}">{{$genre->name}}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="">
         <label for="image">Locandina</label>
         <input type="file" name="image" id="">
     </div>
@@ -31,3 +49,12 @@
     <button type="submit">Aggiungi Film</button>
 
 </form>
+
+
+<script>
+    $(document).ready(function() {
+      $('.select2').select2({
+        placeholder: "Seleziona uno o più generi"
+      });
+    });
+</script>

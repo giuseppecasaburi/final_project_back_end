@@ -21,6 +21,9 @@ class Movie extends Model
             if($movie->image && Storage::disk("public")->exists($movie->image)) {
                 Storage::disk("public")->delete($movie->image);
             }
+
+            // Elimina i collegamenti con i generi
+            $movie->genres()->detach();
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +23,8 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view("movies.create");
+        $genres = Genre::all();
+        return view("movies.create", compact("genres"));
     }
 
     /**
@@ -33,6 +35,7 @@ class MovieController extends Controller
         $data = $request->all();
         
         $newMovie = new Movie();
+        $genres = $data["genres"];
 
         $newMovie->title = $data["title"];
         $newMovie->story = $data["story"];
@@ -47,6 +50,10 @@ class MovieController extends Controller
         }
         
         $newMovie->save();
+
+        if(array_key_exists("genres", $data)) {
+                $newMovie->genres()->attach($genres);
+        }
 
         return redirect()->route("movies.show", $newMovie->id);
 
@@ -67,7 +74,8 @@ class MovieController extends Controller
     public function edit(string $id)
     {
         $movie = Movie::findOrFail($id);
-        return view("movies.edit", compact("movie"));
+        $genres = Genre::all();
+        return view("movies.edit", compact("movie", "genres"));
     }
 
     /**
@@ -102,6 +110,8 @@ class MovieController extends Controller
         }
 
         $movie->save();
+
+        $movie->genres()->sync($data["genres"]);
 
         return redirect()->route("movies.show", $movie->id);
 
