@@ -19,7 +19,7 @@ class GenreController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         return view("genres.create");
     }
@@ -36,6 +36,11 @@ class GenreController extends Controller
         $newGenre->color = $data["color"];
 
         $newGenre->save();
+
+        if($request->has("from") && $request->input("from") === "movies.create") {
+            // Torna alla create di movies con il genere già selezionato
+            return redirect()->route("movies.create")->with("new_genre_id", $newGenre->id);
+        }
 
         return redirect()->route("genre.show", $newGenre->id);
 

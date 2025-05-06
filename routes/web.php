@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
@@ -22,5 +23,7 @@ Route::middleware('auth')->group(function () {
 Route::resource("/movies", MovieController::class);
 
 Route::resource("/genre", GenreController::class);
+
+Route::resource("/directors", DirectorController::class);
 
 require __DIR__.'/auth.php';
