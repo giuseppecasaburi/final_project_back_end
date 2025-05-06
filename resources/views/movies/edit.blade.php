@@ -42,6 +42,17 @@
         </select>
     </div>
 
+    <div>
+        <select name="director_id" id="">
+            <option value="">Seleziona un regista</option>
+            @foreach ($directors as $director)
+                <option value="{{$director->id}}"
+                    {{$movie->director_id == $director->id ? "selected" : ""}}
+                    >{{$director->name}} {{$director->surname}}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="">
         <label for="image">Sostituisci la locandina</label>
         <input type="file" name="image" id="">

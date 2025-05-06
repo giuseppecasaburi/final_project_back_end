@@ -20,10 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource("/movies", MovieController::class);
+Route::resource("/movies", MovieController::class)->middleware(['auth', 'verified']);
 
-Route::resource("/genre", GenreController::class);
+Route::resource("/genre", GenreController::class)->middleware(['auth', 'verified']);
 
-Route::resource("/directors", DirectorController::class);
+Route::resource("/directors", DirectorController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -44,6 +44,10 @@ class MovieController extends Controller
         $newMovie->year_of_publication = $data["year_of_publication"];
         $newMovie->duration = $data["duration"];
 
+        if($data["director_id"]) {
+            $newMovie->director_id = $data["director_id"];
+        }
+
         if(array_key_exists("image", $data)) {
             // Crea un nome univoco, la cartella "locandine se non la trova", salva il file e ritorna il path;
             $img_path = Storage::putFile("locandine", $data["image"]);
@@ -77,7 +81,8 @@ class MovieController extends Controller
     {
         $movie = Movie::findOrFail($id);
         $genres = Genre::all();
-        return view("movies.edit", compact("movie", "genres"));
+        $directors = Director::all();
+        return view("movies.edit", compact("movie", "genres", "directors"));
     }
 
     /**
@@ -92,6 +97,7 @@ class MovieController extends Controller
         $movie->story = $data["story"];
         $movie->year_of_publication = $data["year_of_publication"];
         $movie->duration = $data["duration"];
+        $movie->director_id = $data["director_id"];
 
         if(array_key_exists("image", $data)) {
             // Elimina vecchia

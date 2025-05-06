@@ -47,8 +47,7 @@
     </div>
 
     <div>
-        <label for="director"></label>
-        <select name="director" id="">
+        <select name="director_id" id="">
             <option value="">Seleziona un regista</option>
             @foreach ($directors as $director)
                 <option value="{{$director->id}}"
