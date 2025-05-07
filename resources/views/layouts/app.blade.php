@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>MovieMood</title>
+    <title>@yield('title')</title>
 
 
     <!-- Fonts -->
@@ -16,84 +16,89 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/dark_theme.css'])
+
 </head>
 
 <body>
     <div id="app">
-
-
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm ms-nav-bar">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <div class="logo_laravel">
-                        MovieMood
-                    </div>
-                    {{-- config('app.name', 'Laravel') --}}
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="storage/site_image/logo.png" alt="Logo" style="height: 40px; width: auto;">
                 </a>
 
-                {{-- Hamburger button --}}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                @if (request()->is('login') || request()->is('register'))
+                @else
+                    <!-- Toggler/collapsibe Button -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                        aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">Bacheca</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/movies') }}">Film</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/directors') }}">Registi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/genre') }}">Generi</a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                    <!-- Navbar links -->
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <!-- Left Side -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 left-side">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/') }}">Bacheca</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/movies') }}">Film</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/directors') }}">Registi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/genre') }}">Generi</a>
+                            </li>
+                        </ul>
+                @endif
+                <!-- Right Side -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Accedi</a>
                         </li>
                         @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Registrati</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                            </li>
                         @endif
-                        @else
+                    @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">Bacheca</a>
-                                <a class="dropdown-item" href="{{ url('profile') }}">Profilo</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    Disconnettiti
-                                </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('dashboard') }}">Bacheca</a></li>
+                                <li><a class="dropdown-item" href="{{ url('profile') }}">Profilo</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Disconnettiti
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
-                        @endguest
-                    </ul>
-                </div>
+                    @endguest
+                </ul>
             </div>
-        </nav>
+    </div>
+    </nav>
 
-        <main class="">
-            @yield('content')
-        </main>
+    </div>
+
+    <main class="">
+        @yield('content')
+    </main>
     </div>
 </body>
 

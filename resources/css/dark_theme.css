@@ -1,0 +1,144 @@
+/* === Tema Scuro per Backoffice === */
+
+body {
+    background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Titoli */
+h1, h2, h3, h4, h5 {
+    color: #ffffff;
+}
+
+/* Link */
+a {
+    color: #90cdf4;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #63b3ed;
+}
+
+/* Pulsanti */
+button {
+    background-color: #1f2937;
+    color: #f1f1f1;
+    border: 1px solid #374151;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #374151;
+}
+
+/* Input */
+input, select, textarea {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    border: 1px solid #444;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #90cdf4;
+    background-color: #2a2a2a;
+}
+
+/* Card o contenitori */
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #2c2c2c;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Tabelle */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #2c2c2c;
+}
+
+th {
+    background-color: #1f2937;
+    color: #ffffff;
+}
+
+td {
+    background-color: #1a1a1a;
+}
+
+/* Scrollbar (opzionale) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* === Navbar === */
+.ms-nav-bar {
+    background: linear-gradient(90deg, #1f1f1f 0%, #2c2c2c 50%, #1f1f1f 100%);
+    color: #f67c2f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 5rem;
+    font-size: 1.3rem;
+}
+
+.ms-ul-left li {
+    padding: 0 30px;
+}
+
+.nav-item a {
+    color: #f67c2f;
+}
+
+/* Sfondo visibile anche nel collapse su mobile */
+.navbar-collapse {
+    padding: 1rem;
+    z-index: 1000;
+}
+
+#navbarContent.show,
+.dropdown-menu {
+    background-color: #1f1f1f;
+}
+
+#navbarContent.show ul li{
+    padding: 0;
+}
+
+/* Impedisce la sovrapposizione */
+.navbar {
+    position: relative;
+    z-index: 999;
+}
+
+.left-side li {
+    padding: 0 30px;
+}
+
+li > a.nav-link:hover,
+li > a.dropdown-item:hover {
+    color: #ffa500;
+    transition: all 0.3s ease-in-out;
+}
