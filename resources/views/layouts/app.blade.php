@@ -56,13 +56,13 @@
                         </ul>
                 @endif
                 <!-- Right Side -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav {{ (request()->is("login") || request()->is("register")) ? "auth-nav" : "ms-auto mb-2 mb-lg-0"}} ">
                     @guest
-                        <li class="nav-item">
+                        <li class="nav-item {{ (request()->is("login")) ? "d-none d-sm-block" : "" }}">
                             <a class="nav-link" href="{{ route('login') }}">Accedi</a>
                         </li>
                         @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item {{ (request()->is("register")) ? "d-none d-sm-block" : "" }}">
                                 <a class="nav-link" href="{{ route('register') }}">Registrati</a>
                             </li>
                         @endif

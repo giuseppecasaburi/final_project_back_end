@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section("title", "BackOffice Home")
+
 {{-- Sezione main di app --}}
 @section('content')
     <div class="container">
