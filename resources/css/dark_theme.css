@@ -147,3 +147,13 @@ header p,
 .modal-header h5 {
     color: #ffa500;
 }
+
+/* === Dashboard view === */
+.card-header,
+.card-title {
+    color: #ffa500;
+}
+
+.card-text {
+    color: #ffff;
+}
