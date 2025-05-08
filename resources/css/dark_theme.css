@@ -100,7 +100,7 @@ li > a.dropdown-item:hover {
     transition: all 0.3s ease-in-out;
 }
 
-/* === Register & Login view === */
+/* === Register & Login view & Forgot Password === */
 .auth-nav {
     display: flex;
     flex-direction: row;
@@ -116,7 +116,8 @@ li > a.dropdown-item:hover {
 #register label,
 #register div,
 #login label,
-#login div {
+#login div,
+div label {
     color: #ffa500;
 }
 

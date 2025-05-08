@@ -2,7 +2,7 @@
 
 @section('title', 'BackOffice Home')
 
-{{-- Sezione main di app --}}
+{{-- Sezione main della Bacheca --}}
 @section('content')
     <div class="container">
         <h2 class="fs-2 my-4 text-center">
