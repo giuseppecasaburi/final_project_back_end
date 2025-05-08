@@ -45,7 +45,8 @@
                                 <div class="card-body d-flex flex-column">
                                     <h4 class="card-title">{{ $content['title'] }}</h4>
                                     <p class="card-text flex-grow-1">{{ $content['text'] }}</p>
-                                    <a href="{{ route($content['route']) }}" class="btn btn-outline-warning mt-2">Aggiungi un
+                                    <a href="{{ route($content['route']) }}" class="btn btn-outline-warning mt-2">Aggiungi
+                                        un
                                         nuovo {{ $content['title'] }}</a>
                                 </div>
                             </div>

@@ -40,10 +40,7 @@
                     <!-- Navbar links -->
                     <div class="collapse navbar-collapse" id="navbarContent">
                         <!-- Left Side -->
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 left-side">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}">Bacheca</a>
-                            </li>
+                        <ul class="navbar-nav me-5 mb-2 mb-lg-0 left-side">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/movies') }}">Film</a>
                             </li>
@@ -54,6 +51,12 @@
                                 <a class="nav-link" href="{{ url('/genre') }}">Generi</a>
                             </li>
                         </ul>
+                        <div class="search-bar">
+                            <form action="{{ route("search") }}" class="d-flex" role="search" method="GET">
+                                <input class="form-control me-3" name="query_search" value="{{ request('query_search') }}" type="search" placeholder="Nome Film o Regista.." aria-label="Search"/>
+                                <button class="btn btn-outline-warning" type="submit">Cerca</button>
+                            </form>
+                        </div>
                 @endif
                 <!-- Right Side -->
                 <ul class="navbar-nav {{ (request()->is("login") || request()->is("register")) ? "auth-nav" : "ms-auto mb-2 mb-lg-0"}} ">

@@ -5,13 +5,10 @@ use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified']);
-
-Route::get('/dashboard', [DashboardController::class, "index"])
+Route::get('/', [DashboardController::class, "index"])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -26,5 +23,7 @@ Route::resource("/movies", MovieController::class)->middleware(['auth', 'verifie
 Route::resource("/genre", GenreController::class)->middleware(['auth', 'verified']);
 
 Route::resource("/directors", DirectorController::class)->middleware(['auth', 'verified']);
+
+Route::get("/search", [SearchController::class, "index"])->name("search");
 
 require __DIR__.'/auth.php';
