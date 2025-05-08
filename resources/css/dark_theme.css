@@ -124,3 +124,26 @@ li > a.dropdown-item:hover {
     border-color: #ffa500;
     box-shadow: 0 0 0 0.25rem #ffa500;
 }
+
+/* === Profile view === */
+#update-section,
+#password-section {
+    color: #ffa500;
+}
+
+header h2 {
+    color: #ffa500;
+}
+
+header p,
+.modal-body p {
+    color: #ffff;
+}
+
+.delete-modal {
+    background-color: #121212;
+}
+
+.modal-header h5 {
+    color: #ffa500;
+}
