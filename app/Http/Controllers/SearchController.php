@@ -11,6 +11,8 @@ class SearchController extends Controller
 {
     public function index (Request $request) {
 
+        $directors_list = Director::all();
+
         $genres = Genre::all();
 
         $search = $request->query("query_search");
@@ -23,6 +25,6 @@ class SearchController extends Controller
             ->orWhere("surname", "like", "%$search%")
             ->get();
 
-        return view("search.index", compact("movies", "directors", "genres"));
+        return view("search.index", compact("movies", "directors", "genres", "directors_list"));
     }
 }
