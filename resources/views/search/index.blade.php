@@ -14,21 +14,23 @@
 
     <div class="d-sm-flex d-block">
         <div class="filter d-block d-sm-flex flex-column p-3">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route("search")}}" method="GET" enctype="multipart/form-data">
+                <input type="hidden" name="query_search" value="{{request("query_search")}}" id="">
                 <h3>Aggiungi Filtri</h3>
                 <h5 class="d-block">Filtra per Genere</h5>
                 <div class="p-2">
-                    @foreach ($genres as $genre)
+                    @foreach ($genres_list as $genre)
                         <span class="d-none d-sm-block pb-2 px-2">
-                            <input type="checkbox">
+                            <input type="checkbox" name="genres[]" value="{{$genre->id}}" {{ in_array($genre->id, request()->input('genres', [])) ? 'checked' : '' }}>
                             <label for="">{{ $genre->name }}</label>
                         </span>
                     @endforeach
                     <div class="select">
                         <select name="genres[]" multiple class="form-control select2" id="">
-                            @foreach ($genres as $genre)
+                            @foreach ($genres_list as $genre)
                                 <option value="{{ $genre->id }}"
-                                    {{ old('genre_id', session('new_genre_id')) == $genre->id ? 'selected' : '' }}>
+                                    {{ in_array($genre->id, request()->input('genres', [])) ? 'selected' : '' }}
+                                    >
                                     {{ $genre->name }}</option>
                             @endforeach
                         </select>
@@ -38,21 +40,23 @@
                 <div class="p-2">
                     @foreach ($directors_list as $director)
                         <span class="d-none d-sm-block pb-2 px-2">
-                            <input type="checkbox">
+                            <input type="checkbox" name="directors[]" value="{{ $director->id }}" {{ in_array($director->id, request()->input('directors', [])) ? 'checked' : '' }}>
                             <label for="">{{ $director->name }} {{ $director->surname }}</label>
                         </span>
                     @endforeach
                     <div class="select">
-                        <select name="genres[]" multiple class="d-sm-none form-control select2" id="">
+                        <select name="directors[]" multiple class="d-sm-none form-control select2" id="">
                             @foreach ($directors_list as $director)
                                 <option value="{{ $director->id }}"
-                                    {{ old('genre_id', session('new_genre_id')) == $director->id ? 'selected' : '' }}>
+                                    {{ in_array($director->id, request()->input('directors', [])) ? 'selected' : '' }}
+                                    >
                                     {{ $director->name }} {{ $director->surname }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-warning mt-3">Applica filtri</button>
+                <a href="{{route("search", ["query_search" => request("query_search")])}}" class="btn btn-outline-secondary">Rimuovi filtri</a>
             </form>
         </div>
         <div class="content p-3">
