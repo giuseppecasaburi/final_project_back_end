@@ -54,10 +54,10 @@
                             </li>
                         </ul>
                         <div class="search-bar">
-                            <form action="{{ route('search') }}" class="d-flex" role="search" method="GET">
+                            <form action="{{ route('search') }}" class="d-flex m-0" role="search" method="GET">
                                 <input class="form-control me-3" name="query_search"
                                     value="{{ request('query_search') }}" type="search"
-                                    placeholder="Nome Film o Regista.." aria-label="Search" />
+                                    placeholder="Nome Film o Regista.." aria-label="Search" required/>
                                 <button class="btn btn-outline-warning" type="submit">Cerca</button>
                             </form>
                         </div>

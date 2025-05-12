@@ -29,6 +29,11 @@ textarea {
     border-radius: 4px;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -172,6 +177,10 @@ header p,
 }
 
 /* === Search view === */
+.contenitore {
+    width: 100%;
+}
+
 .animated-modal {
     position: fixed;
     top: 50%;
@@ -203,10 +212,15 @@ header p,
 
 .filter {
     background: linear-gradient(90deg, #1f1f1f 0%, #2c2c2c 50%, #1f1f1f 100%);
-    width: 350px;
+    width: 20%;
 }
 
-.filter h3 {
+.content {
+    width: 80%;
+}
+
+.filter h3,
+.content h3 {
     color: #ffa500;
 }
 
@@ -217,6 +231,10 @@ header p,
 @media (max-width: 576px) {
     .filter {
         width: 100vw;
+    }
+
+    .content {
+        width: 100%;
     }
 
     .select {
