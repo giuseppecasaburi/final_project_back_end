@@ -77,7 +77,7 @@
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>
-        
+
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="{{ url('dashboard') }}">Bacheca</a></li>
                                         <li><a class="dropdown-item" href="{{ url('profile') }}">Profilo</a></li>
@@ -88,7 +88,7 @@
                                             </a>
                                         </li>
                                     </ul>
-        
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -105,4 +105,5 @@
         @yield('content')
     </main>
 </body>
+
 </html>
