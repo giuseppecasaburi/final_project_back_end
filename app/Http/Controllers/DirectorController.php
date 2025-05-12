@@ -13,7 +13,7 @@ class DirectorController extends Controller
      */
     public function index()
     {
-        $directors = Director::all();
+        $directors = Director::paginate(9);
 
         return view("directors.index", compact("directors"));
     }

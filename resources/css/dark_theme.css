@@ -288,5 +288,36 @@ header p,
     .select2-container--default .select2-selection--single .select2-selection__placeholder {
         color: #ffa500;
     }
+}
 
+/* === Movie index === */
+.card-body span,
+.card-body p {
+    color: #fff;
+}
+
+.pagination .page-link {
+    color: #ffa500 !important;
+    background-color: transparent !important;
+    border: 1px solid #ffa500 !important;
+}
+
+.pagination .page-link:hover {
+    background-color: #ffa500 !important;
+    color: #fff !important;
+}
+
+.pagination .active .page-link {
+    background-color: #ffa500 !important;
+    color: #fff !important;
+    border-color: #ffa500 !important;
+}
+
+.pagination .disabled .page-link {
+    color: #999 !important;
+    border-color: #ffa500 !important;
+}
+
+div nav div:nth-child(2) div:nth-child(1) {
+    display: none;
 }
