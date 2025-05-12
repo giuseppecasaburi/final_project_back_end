@@ -14,11 +14,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- JavaScript di Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js', 'resources/css/dark_theme.css'])
+    @vite(['resources/js/app.js', 'resources/scss/app.scss', 'resources/css/dark_theme.css'])
 
 </head>
 
@@ -57,57 +55,54 @@
                             <form action="{{ route('search') }}" class="d-flex m-0" role="search" method="GET">
                                 <input class="form-control me-3" name="query_search"
                                     value="{{ request('query_search') }}" type="search"
-                                    placeholder="Nome Film o Regista.." aria-label="Search" required/>
+                                    placeholder="Nome Film o Regista.." aria-label="Search" required />
                                 <button class="btn btn-outline-warning" type="submit">Cerca</button>
                             </form>
                         </div>
-                @endif
-                <!-- Right Side -->
-                <ul
-                    class="navbar-nav {{ request()->is('login') || request()->is('register') ? 'auth-nav' : 'ms-auto mb-2 mb-lg-0' }} ">
-                    @guest
-                        <li class="nav-item {{ request()->is('login') ? 'd-none d-sm-block' : '' }}">
-                            <a class="nav-link" href="{{ route('login') }}">Accedi</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item {{ request()->is('register') ? 'd-none d-sm-block' : '' }}">
-                                <a class="nav-link" href="{{ route('register') }}">Registrati</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ url('dashboard') }}">Bacheca</a></li>
-                                <li><a class="dropdown-item" href="{{ url('profile') }}">Profilo</a></li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Disconnettiti
-                                    </a>
+                        <!-- Right Side -->
+                        <ul
+                            class="navbar-nav {{ request()->is('login') || request()->is('register') ? 'auth-nav' : 'ms-auto my-2 my-lg-0' }} ">
+                            @guest
+                                <li class="nav-item {{ request()->is('login') ? 'd-none d-sm-block' : '' }}">
+                                    <a class="nav-link" href="{{ route('login') }}">Accedi</a>
                                 </li>
-                            </ul>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                    @endguest
-                </ul>
+                                @if (Route::has('register'))
+                                    <li class="nav-item {{ request()->is('register') ? 'd-none d-sm-block' : '' }}">
+                                        <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+        
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{ url('dashboard') }}">Bacheca</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('profile') }}">Profilo</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                Disconnettiti
+                                            </a>
+                                        </li>
+                                    </ul>
+        
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
+                @endif
             </div>
-    </div>
-    </nav>
-
+        </nav>
     </div>
 
     <main class="">
         @yield('content')
     </main>
-    </div>
 </body>
-
 </html>

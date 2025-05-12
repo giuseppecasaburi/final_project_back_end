@@ -290,7 +290,7 @@ header p,
     }
 }
 
-/* === Movie index === */
+/* === Movie-Director-Genre index === */
 .card-body span,
 .card-body p {
     color: #fff;
@@ -320,4 +320,25 @@ header p,
 
 div nav div:nth-child(2) div:nth-child(1) {
     display: none;
+}
+
+/* === Movie Show === */
+.body-review {
+    border: 2px solid #ffa500;
+    border-radius: 15px;
+    padding: 5px;
+    min-height: 150px;
+}
+
+.header-content h2,
+.header-content p,
+.body-review div h5,
+.body-review div p {
+    color: #ffa500;
+}
+
+@media (max-width:992px) {
+    .w-lg-100 {
+        width: 100% !important;
+    }
 }
