@@ -25,6 +25,7 @@ class StoreMovieRequest extends FormRequest
             'review' => 'nullable|string|min:10',
             'vote' => 'nullable|numeric|min:1|max:5',
             'image' => 'nullable|image|max:2048',
+            'remove_image' => "string"
         ];
     }
 

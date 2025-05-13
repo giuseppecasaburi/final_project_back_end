@@ -42,8 +42,7 @@
 
                 <div class="">
                     <label for="story">Trama</label>
-                    <textarea name="story" id="" cols="30" rows="10" class="w-50 w-lg-100"
-                        required>{{old("story")}}</textarea>
+                    <textarea name="story" id="" cols="30" rows="10" class="w-50 w-lg-100" required>{{ old('story') }}</textarea>
                     @error('story')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
@@ -89,7 +88,7 @@
 
                 <div>
                     <label for="review">Recensione</label>
-                    <textarea name="review" id="" cols="30" rows="10" class="w-50 w-lg-100">{{old("review")}}</textarea>
+                    <textarea name="review" id="" cols="30" rows="10" class="w-50 w-lg-100">{{ old('review') }}</textarea>
                     @error('review')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
@@ -130,8 +129,11 @@
                 </div>
 
                 <button type="submit" class="btn btn-outline-warning w-25 mt-5 w-lg-100">Aggiungi Film</button>
-
             </form>
+            {{-- LINK TORNA ALLA HOME --}}
+            <div class="mt-3 text-center">
+                <a href="{{ route('movies.index') }}" class="btn btn-outline-secondary w-25 mt-5 w-lg-100">Torna alla home</a>
+            </div>
         </div>
     </div>
 @endsection

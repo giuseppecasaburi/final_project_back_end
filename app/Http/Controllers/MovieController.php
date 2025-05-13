@@ -35,12 +35,7 @@ class MovieController extends Controller
      */
     public function store(StoreMovieRequest $request)
     {
-
-        
-
         $data = $request->validated();
-
-        dd($data);
 
         $newMovie = new Movie();
         $genres = $data["genres"];
@@ -95,9 +90,9 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreMovieRequest $request, string $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $movie = Movie::findOrFail($id);
 
         $movie->title = $data["title"];
@@ -105,6 +100,8 @@ class MovieController extends Controller
         $movie->year_of_publication = $data["year_of_publication"];
         $movie->duration = $data["duration"];
         $movie->director_id = $data["director_id"];
+        $movie->review = $data["review"];
+        $movie->vote = $data["vote"];
 
         if (array_key_exists("image", $data)) {
             // Elimina vecchia
@@ -119,7 +116,7 @@ class MovieController extends Controller
             $movie->image = $img_path;
         }
 
-        if (array_key_exists("remove", $data)) {
+        if (array_key_exists("remove_image", $data) && $data["remove_image"] != 0) {
             Storage::disk("public")->delete($movie->image);
             $movie->image = null;
         }
