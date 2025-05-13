@@ -296,7 +296,7 @@ div nav div:nth-child(2) div:nth-child(1) {
     }
 }
 
-/* === Movie Create === */
+/* === Movie Create & Edit === */
 .form-container {
     border: 2px solid #ffa500;
     border-radius: 20px;
@@ -376,4 +376,18 @@ div nav div:nth-child(2) div:nth-child(1) {
     .form-container form div input {
         width: 100%;
     }
+}
+
+/* === Movie Delete Modal === */
+.modal-content {
+    background-color: #1e1e1e;
+    color: #ffff;
+}
+
+.modal-header {
+    border-bottom: var(--bs-modal-header-border-width) solid #ffa500;
+}
+
+.modal-footer {
+    border-top: var(--bs-modal-footer-border-width) solid #ffa500;
 }

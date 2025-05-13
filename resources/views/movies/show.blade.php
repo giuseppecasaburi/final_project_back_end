@@ -51,11 +51,36 @@
                     <a href="{{ route('movies.edit', $movie->id) }}"
                         class="btn btn-outline-warning w-50 w-sm-auto">Modifica Movie</a>
 
-                    <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" class="w-100 w-sm-auto">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger w-50">Elimina Movie</button>
-                    </form>
+                    <button type="submit" class="btn btn-outline-danger w-50" data-bs-toggle="modal"
+                            data-bs-target="#deleteMovieModal">Elimina Movie</button>
+
+                    <!-- Modal di conferma -->
+                    <div class="modal fade" id="deleteMovieModal" tabindex="-1" aria-labelledby="deleteMovieModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered"> <!-- centrato verticalmente -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteMovieModalLabel">Conferma Eliminazione</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Chiudi"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare il film <strong>{{ $movie->title }}</strong>?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Annulla</button>
+                                    <form action="{{ route('movies.destroy', $movie->id) }}" method="POST"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger">Elimina</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
