@@ -20,6 +20,7 @@ class StoreDirectorRequest extends FormRequest
             'nationality' => ['required', 'string', 'min:2', 'max:50'],
             'description' => ['required', 'string', 'min:10', 'max:1000'],
             'image' => ['nullable', 'image', 'max:2048'], // max 2MB
+            'remove_image' => "string"
         ];
     }
 

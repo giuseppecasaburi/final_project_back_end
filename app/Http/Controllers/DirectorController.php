@@ -85,9 +85,9 @@ class DirectorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreDirectorRequest $request, string $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $director = Director::findOrFail($id);
 
         $director->name = $data["name"];
@@ -95,6 +95,11 @@ class DirectorController extends Controller
         $director->date_of_birth = $data["date_of_birth"];
         $director->nationality = $data["nationality"];
         $director->description = $data["description"];
+
+        if (array_key_exists("remove_image", $data) && $data["remove_image"] != 0) {
+            Storage::disk("public")->delete($director->image);
+            $director->image = null;
+        }
 
         if (array_key_exists("image", $data)) {
 

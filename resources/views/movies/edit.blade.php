@@ -170,10 +170,11 @@
 @section('script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Rimuovi immagine esistente
+            // 1. Rimuovi immagine esistente via X
             const removeExistingBtn = document.getElementById('removeExistingImage');
             const existingContainer = document.getElementById('existingImageContainer');
             const removeField = document.getElementById('removeImageField');
+
             if (removeExistingBtn && existingContainer && removeField) {
                 removeExistingBtn.addEventListener('click', () => {
                     existingContainer.remove();
@@ -181,13 +182,21 @@
                 });
             }
 
-            // 2. Anteprima nuova immagine
+            // 2. Anteprima nuova immagine (e rimozione della vecchia se ne selezioni una nuova)
             const inputFile = document.getElementById('image');
             const previewImg = document.getElementById('imagePreview');
             const previewWrap = document.getElementById('previewContainer');
             const removePreviewBtn = document.getElementById('removeImage');
+
             if (inputFile && previewImg && previewWrap && removePreviewBtn) {
                 inputFile.addEventListener('change', function() {
+                    // **Rimuovo automaticamente l'esistente al caricamento della nuova**
+                    if (existingContainer) {
+                        existingContainer.remove();
+                        removeField.value = "1";
+                    }
+
+                    // Mostro la nuova preview
                     const file = this.files[0];
                     if (file && file.type.startsWith('image/')) {
                         const reader = new FileReader();
@@ -198,6 +207,7 @@
                         reader.readAsDataURL(file);
                     }
                 });
+
                 removePreviewBtn.addEventListener('click', () => {
                     inputFile.value = '';
                     previewImg.src = '';

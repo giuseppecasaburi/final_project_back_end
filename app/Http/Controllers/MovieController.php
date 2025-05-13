@@ -103,6 +103,11 @@ class MovieController extends Controller
         $movie->review = $data["review"];
         $movie->vote = $data["vote"];
 
+        if (array_key_exists("remove_image", $data) && $data["remove_image"] != 0) {
+            Storage::disk("public")->delete($movie->image);
+            $movie->image = null;
+        }
+
         if (array_key_exists("image", $data)) {
             // Elimina vecchia
             if ($movie->image && Storage::disk("public")->exists($movie->image)) {
@@ -114,11 +119,6 @@ class MovieController extends Controller
 
             // Aggiorna db
             $movie->image = $img_path;
-        }
-
-        if (array_key_exists("remove_image", $data) && $data["remove_image"] != 0) {
-            Storage::disk("public")->delete($movie->image);
-            $movie->image = null;
         }
 
         $movie->save();
