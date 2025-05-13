@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMovieRequest;
 use App\Models\Director;
 use App\Models\Genre;
 use App\Models\Movie;
@@ -32,10 +33,15 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        $data = $request->all();
+
         
+
+        $data = $request->validated();
+
+        dd($data);
+
         $newMovie = new Movie();
         $genres = $data["genres"];
 
@@ -43,26 +49,27 @@ class MovieController extends Controller
         $newMovie->story = $data["story"];
         $newMovie->year_of_publication = $data["year_of_publication"];
         $newMovie->duration = $data["duration"];
+        $newMovie->review = $data["review"];
+        $newMovie->vote = $data["vote"];
 
-        if($data["director_id"]) {
+        if ($data["director_id"]) {
             $newMovie->director_id = $data["director_id"];
         }
 
-        if(array_key_exists("image", $data)) {
+        if (array_key_exists("image", $data)) {
             // Crea un nome univoco, la cartella "locandine se non la trova", salva il file e ritorna il path;
             $img_path = Storage::putFile("locandine", $data["image"]);
 
             $newMovie->image = $img_path;
         }
-        
+
         $newMovie->save();
 
-        if(array_key_exists("genres", $data)) {
-                $newMovie->genres()->attach($genres);
+        if (array_key_exists("genres", $data)) {
+            $newMovie->genres()->attach($genres);
         }
 
         return redirect()->route("movies.show", $newMovie->id);
-
     }
 
     /**
@@ -99,12 +106,12 @@ class MovieController extends Controller
         $movie->duration = $data["duration"];
         $movie->director_id = $data["director_id"];
 
-        if(array_key_exists("image", $data)) {
+        if (array_key_exists("image", $data)) {
             // Elimina vecchia
-            if($movie->image && Storage::disk("public")->exists($movie->image)) {
+            if ($movie->image && Storage::disk("public")->exists($movie->image)) {
                 Storage::disk("public")->delete($movie->image);
             }
-            
+
             // Aggiungi nuova
             $img_path = Storage::putFile("locandine", $data["image"]);
 
@@ -112,7 +119,7 @@ class MovieController extends Controller
             $movie->image = $img_path;
         }
 
-        if(array_key_exists("remove", $data)) {
+        if (array_key_exists("remove", $data)) {
             Storage::disk("public")->delete($movie->image);
             $movie->image = null;
         }
@@ -122,7 +129,6 @@ class MovieController extends Controller
         $movie->genres()->sync($data["genres"]);
 
         return redirect()->route("movies.show", $movie->id);
-
     }
 
     /**

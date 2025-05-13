@@ -39,7 +39,7 @@
             <p class="fs-5">{{ $movie->story }}</p>
 
             {{-- ANNO --}}
-            <p class="fs-5">Anno di pubblicazione: {{ $movie->year_of_publication }}</p>
+            <p class="fs-5">Anno di pubblicazione: {{ \Carbon\Carbon::parse($movie->year_of_publication)->format('d/m/Y') }}</p>
 
             {{-- DURATA --}}
             <span class="fs-5">Durata: {{ $movie->duration }} minuti</span>
@@ -64,7 +64,7 @@
             <p class="mb-0">Voto: {{ $movie->vote }}/5</p>
         </div>
         @if ($movie->review)
-            <p>Recensione: {{ $movie->review }}</p>
+            <p>{{ $movie->review }}</p>
         @else
             <p>Nessuna recensione presente.</p>
         @endif
