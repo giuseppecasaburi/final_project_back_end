@@ -29,6 +29,17 @@
                 </a>
 
                 @if (request()->is('login') || request()->is('register'))
+                    <ul
+                        class="navbar-nav {{ request()->is('login') || request()->is('register') ? 'auth-nav' : 'ms-auto my-2 my-lg-0' }} ">
+                        <li class="nav-item {{ request()->is('login') ? 'd-none d-sm-block' : '' }}">
+                            <a class="nav-link" href="{{ route('login') }}">Accedi</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item {{ request()->is('register') ? 'd-none d-sm-block' : '' }}">
+                                <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                            </li>
+                        @endif
+                    </ul>
                 @else
                     <!-- Toggler/collapsibe Button -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -79,7 +90,7 @@
                                     </a>
 
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="{{ url('dashboard') }}">Bacheca</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('/') }}">Bacheca</a></li>
                                         <li><a class="dropdown-item" href="{{ url('profile') }}">Profilo</a></li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
