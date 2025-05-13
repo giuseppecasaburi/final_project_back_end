@@ -103,6 +103,4 @@
             <a href="{{ route('movies.index') }}" class="btn btn-outline-secondary w-sm-auto">Torna alla home</a>
         </div>
     </div>
-
-    </div>
 @endsection

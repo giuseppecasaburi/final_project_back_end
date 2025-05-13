@@ -220,7 +220,8 @@ header p,
 }
 
 .filter h3,
-.content h3 {
+.content h3,
+.related-movies h3 {
     color: #ffa500;
 }
 
