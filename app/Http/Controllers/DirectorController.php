@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDirectorRequest;
 use App\Models\Director;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -30,9 +31,9 @@ class DirectorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDirectorRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $newDirector = new Director();
 
