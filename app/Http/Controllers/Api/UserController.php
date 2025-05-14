@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\Director;
+use App\Models\Movie;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function indexMovies()
+    {
+        // Preleva tutti i film con annessi tutti i generi collegati e il regista
+        $movies = Movie::with(["director", "genres"])->get();
+
+        return response()->json([
+            "success" => "true",
+            "data" => $movies
+        ]);
+    }
+
+    public function showMovie($id)
+    {
+        // Preleva un singolo film con tutti i generi annessi e il regista
+        $movie = Movie::with(["director", "genres"])->FindOrFail($id);
+
+        return response()->json([
+            "success" => "true",
+            "data" => $movie
+        ]);
+    }
+
+    public function indexDirectors()
+    {
+        // Preleva tutti i film con annessi tutti i generi collegati e il regista
+        $directors = Director::with(["movies"])->get();
+
+        return response()->json([
+            "success" => "true",
+            "data" => $directors
+        ]);
+    }
+
+    public function showDirector($id)
+    {
+        // Preleva un singolo film con tutti i generi annessi e il regista
+        $director = Director::with(["movies"])->FindOrFail($id);
+
+        return response()->json([
+            "success" => "true",
+            "data" => $director
+        ]);
+    }
+}
