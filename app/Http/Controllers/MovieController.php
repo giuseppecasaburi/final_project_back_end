@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Director;
 use App\Models\Genre;
 use App\Models\Movie;
@@ -90,7 +91,7 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreMovieRequest $request, string $id)
+    public function update(UpdateMovieRequest $request, string $id)
     {
         $data = $request->validated();
         $movie = Movie::findOrFail($id);

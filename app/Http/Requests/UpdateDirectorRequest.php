@@ -4,18 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDirectorRequest extends FormRequest
+class UpdateDirectorRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:50'],
-            'surname' => ['required', 'string', 'min:3', 'max:50', "unique:directors,surname"],
+            'surname' => ['required', 'string', 'min:3', 'max:50'],
             'date_of_birth' => ['required', 'date', 'before:today'],
             'nationality' => ['required', 'string', 'min:2', 'max:50'],
             'description' => ['required', 'string', 'min:10', 'max:1000'],
@@ -34,7 +29,6 @@ class StoreDirectorRequest extends FormRequest
             'surname.required' => 'Il cognome è obbligatorio.',
             'surname.min' => 'Il cognome deve contenere almeno :min caratteri.',
             'surname.max' => 'Il cognome non può superare i :max caratteri.',
-            'surname.unique' => 'Questo regista è già presente nel Database.',
 
             'date_of_birth.required' => 'La data di nascita è obbligatoria.',
             'date_of_birth.date' => 'Inserisci una data valida.',

@@ -131,8 +131,8 @@
                 <button type="submit" class="btn btn-outline-warning w-25 mt-5 w-lg-100">Aggiungi Film</button>
             </form>
             {{-- LINK TORNA ALLA HOME --}}
-            <div class="mt-3 text-center">
-                <a href="{{ route('movies.index') }}" class="btn btn-outline-secondary w-25 mt-5 w-lg-100">Torna alla home</a>
+            <div class="mt-2 text-center">
+                <a href="{{ route('movies.index') }}" class="btn btn-outline-secondary w-25 w-lg-100">Torna alla home</a>
             </div>
         </div>
     </div>

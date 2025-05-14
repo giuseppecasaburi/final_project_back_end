@@ -392,3 +392,8 @@ div nav div:nth-child(2) div:nth-child(1) {
 .modal-footer {
     border-top: var(--bs-modal-footer-border-width) solid #ffa500;
 }
+
+#genre-color {
+    padding: 2.5px 10px;
+    border-radius: 10px;
+}

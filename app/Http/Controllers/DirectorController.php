@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDirectorRequest;
+use App\Http\Requests\UpdateDirectorRequest;
 use App\Models\Director;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -85,7 +86,7 @@ class DirectorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreDirectorRequest $request, string $id)
+    public function update(UpdateDirectorRequest $request, string $id)
     {
         $data = $request->validated();
         $director = Director::findOrFail($id);

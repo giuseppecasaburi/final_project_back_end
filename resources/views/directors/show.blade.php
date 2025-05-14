@@ -37,7 +37,7 @@
                     <a href="{{ route('directors.edit', $director->id) }}"
                         class="btn btn-outline-warning w-50 w-sm-auto">Modifica Regista</a>
 
-                    <button type="submit" class="btn btn-outline-danger w-50" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-outline-danger w-50" data-bs-toggle="modal"
                         data-bs-target="#deleteMovieModal">Elimina Regista</button>
 
                     <!-- Modal di conferma -->

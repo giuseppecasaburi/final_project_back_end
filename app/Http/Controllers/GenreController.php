@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGenreRequest;
+use App\Http\Requests\UpdateGenreRequest;
 use App\Models\Genre;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -27,9 +30,9 @@ class GenreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreGenreRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $newGenre = new Genre();
 
         $newGenre->name = $data["name"];
@@ -53,7 +56,9 @@ class GenreController extends Controller
     {
         $genre = Genre::findOrFail($id);
 
-        return view("genres.show", compact("genre"));
+        $relatedMovies = $genre->movies()->limit(3)->get();
+
+        return view("genres.show", compact("genre", "relatedMovies"));
     }
 
     /**
@@ -68,9 +73,9 @@ class GenreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateGenreRequest $request, string $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $genre = Genre::findOrFail($id);
 
         $genre->name = $data["name"];
@@ -87,6 +92,9 @@ class GenreController extends Controller
     public function destroy(string $id)
     {
         $genre = Genre::findOrFail($id);
+        
+        $genre->movies()->detach();
+
         $genre->delete();
 
         return redirect()->route("genre.index");

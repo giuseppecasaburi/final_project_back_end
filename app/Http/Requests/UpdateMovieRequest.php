@@ -4,12 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMovieRequest extends FormRequest
+class UpdateMovieRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'title' => 'required|string|min:5|unique:movies,title',
+            'title' => 'required|string|min:5',
             'story' => 'required|string|min:10',
             'director_id' => 'required|exists:directors,id',
             'duration' => 'required|integer|min:1',
@@ -28,7 +28,6 @@ class StoreMovieRequest extends FormRequest
         return [
             'title.required' => 'Il titolo è obbligatorio.',
             'title.min' => 'Il titolo deve contenere almeno :min caratteri.',
-            'title.unique' => 'Questo Film è già presente nel Database.',
             'story.required' => 'La trama è obbligatoria.',
             'story.min' => 'La trama deve contenere almeno :min caratteri.',
             'director_id.required' => 'Il regista è obbligatorio.',
