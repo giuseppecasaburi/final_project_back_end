@@ -26,7 +26,6 @@ class SearchController extends Controller
             ->when($search, fn($q) => $q->where(
                 fn($q2) =>
                 $q2->where('title', 'like', "%{$search}%")
-                    ->orWhere('story', 'like', "%{$search}%")
             ))
             // filtro generi
             ->when(!empty($genreIds), fn($q) => $q->whereHas(
@@ -70,7 +69,6 @@ class SearchController extends Controller
             ->when($search, fn($q) => $q->where(
                 fn($q2) =>
                 $q2->where('title', 'like', "%{$search}%")
-                    ->orWhere('story', 'like', "%{$search}%")
             ))
             // filtro generi
             ->when(!empty($genreIds), fn($q) => $q->whereHas(
@@ -80,14 +78,14 @@ class SearchController extends Controller
             ))
             // filtro registi
             ->when(!empty($directorIds), fn($q) => $q->whereIn('director_id', $directorIds))
-            ->get();
+            ->paginate(9);
 
         // Se c'è ricerca testuale, cerco anche i registi matching
         $directors = collect();
         if ($search) {
             $directors = Director::where('name', 'like', "%{$search}%")
                 ->orWhere('surname', 'like', "%{$search}%")
-                ->get();
+                ->paginate(9);
         }
 
         return response()->json([

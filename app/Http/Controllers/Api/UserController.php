@@ -13,7 +13,7 @@ class UserController extends Controller
     public function indexMovies()
     {
         // Preleva tutti i film con annessi tutti i generi collegati e il regista
-        $movies = Movie::with(["director", "genres"])->get();
+        $movies = Movie::with(["director", "genres"])->paginate(9);
 
         return response()->json([
             "success" => true,
@@ -35,7 +35,7 @@ class UserController extends Controller
     public function indexDirectors()
     {
         // Preleva tutti i film con annessi tutti i generi collegati e il regista
-        $directors = Director::with(["movies"])->get();
+        $directors = Director::with(["movies"])->paginate(9);
 
         return response()->json([
             "success" => true,
