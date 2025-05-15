@@ -15,4 +15,6 @@ Route::get("/movies/{id}", [UserController::class, "showMovie"]);
 Route::get("/directors", [UserController::class, "indexDirectors"]);
 Route::get("/directors/{id}", [UserController::class, "showDirector"]);
 
+Route::get("/genres", [UserController::class, "indexGenres"]);
+
 Route::get("/search", [SearchController::class, "apiSearch"]);

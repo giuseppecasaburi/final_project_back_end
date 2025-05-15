@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Director;
+use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
         $movies = Movie::with(["director", "genres"])->get();
 
         return response()->json([
-            "success" => "true",
+            "success" => true,
             "data" => $movies
         ]);
     }
@@ -26,7 +27,7 @@ class UserController extends Controller
         $movie = Movie::with(["director", "genres"])->FindOrFail($id);
 
         return response()->json([
-            "success" => "true",
+            "success" => true,
             "data" => $movie
         ]);
     }
@@ -37,7 +38,7 @@ class UserController extends Controller
         $directors = Director::with(["movies"])->get();
 
         return response()->json([
-            "success" => "true",
+            "success" => true,
             "data" => $directors
         ]);
     }
@@ -48,8 +49,18 @@ class UserController extends Controller
         $director = Director::with(["movies"])->FindOrFail($id);
 
         return response()->json([
-            "success" => "true",
+            "success" => true,
             "data" => $director
+        ]);
+    }
+
+    public function indexGenres() {
+        // Preleva tutti i generi
+        $genres = Genre::all();
+
+        return response()->json([
+            "success" => true,
+            "data" => $genres
         ]);
     }
 }
