@@ -54,6 +54,17 @@ class UserController extends Controller
         ]);
     }
 
+        public function selectDirectors()
+    {
+        // Preleva tutti i film con annessi tutti i generi collegati e il regista
+        $directors = Director::with(["movies"])->get();
+
+        return response()->json([
+            "success" => true,
+            "data" => $directors
+        ]);
+    }
+
     public function indexGenres() {
         // Preleva tutti i generi
         $genres = Genre::all();
