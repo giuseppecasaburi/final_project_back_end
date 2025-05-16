@@ -6,7 +6,7 @@
         <div
             class="header-content d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center my-3">
             <h2 class="mb-2 mb-lg-0">{{ $movie->title }}</h2>
-            <p class="mb-0 fs-5">Voto: {{ $movie->vote }}/5</p>
+            <p class="mb-0 fs-5">Voto: {{ $movie->vote }}/10</p>
         </div>
 
         {{-- BODY --}}
@@ -89,7 +89,7 @@
         <div class="body-review mt-4">
             <div class="d-flex justify-content-between align-items-lg-center flex-column flex-lg-row">
                 <h5>Recensione</h5>
-                <p class="mb-0">Voto: {{ $movie->vote }}/5</p>
+                <p class="mb-0">Voto: {{ $movie->vote }}/10</p>
             </div>
             @if ($movie->review)
                 <p>{{ $movie->review }}</p>
