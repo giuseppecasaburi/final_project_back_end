@@ -66,14 +66,15 @@
             @if ($movies->count() || $directors->count())
                 <h3>Risultati trovati: {{ $movies->count() + $directors->count() }}</h3>
                 @if ($movies->count())
-                    <h4 class="mb-3">Film Trovati:</h4>
+                    <h4 class="my-3">Film Trovati: {{ $movies->count() }}</h4>
                     <div class="row row-cols-1 row-cols-lg-3 g-4">
                         @foreach ($movies as $movie)
                             <div class="col">
                                 <div class="card h-100 d-flex flex-column">
                                     @if ($movie->image)
                                         <img src="{{ asset('storage/' . $movie->image) }}" class="card-img-top"
-                                            alt="{{ $movie->title }}" style="object-fit: cover; height: 200px;">
+                                            alt="{{ $movie->title }}"
+                                            style="object-fit: cover; object-position: top; height: 200px;">
                                     @endif
                                     <div class="card-header">
                                         <h4 class="card-title">{{ $movie->title }}</h4>
@@ -86,6 +87,16 @@
                                         @else
                                             <p class="card-text flex-grow-1">Nessun regista collegato</p>
                                         @endif
+                                        @if ($movie->genres)
+                                            <div class="pb-3">
+                                                @forelse ($movie->genres as $genre)
+                                                    <span class="mb-2 rounded-5 p-2 me-1 d-inline-block text-white"
+                                                        style="background-color: {{ $genre->color }}">{{ $genre->name }}</span>
+                                                @empty
+                                                    <p class="card-text flex-grow-1">Nessun genere collegato</p>
+                                                @endforelse
+                                            </div>
+                                        @endif
                                         <a href="{{ route('movies.show', $movie->id) }}"
                                             class="btn btn-outline-warning mt-2">Visualizza
                                             Film</a>
@@ -94,10 +105,12 @@
                             </div>
                         @endforeach
                     </div>
+                @else
+                    <h4 class="my-3">Film Trovati: {{ $movies->count() }}</h4>
                 @endif
 
                 @if ($directors->count())
-                    <h4 class="mb-3">Registi Trovati:</h4>
+                    <h4 class="my-3">Registi Trovati: {{ $directors->count() }}</h4>
                     <div class="row row-cols-1 row-cols-lg-3 g-4">
                         @foreach ($directors as $director)
                             <div class="col">

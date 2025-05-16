@@ -291,6 +291,28 @@ div nav div:nth-child(2) div:nth-child(1) {
     color: #ffa500;
 }
 
+.body-content {
+    min-height: 300px;
+}
+
+.image-content {
+    width: 30%;
+    min-height: 300px;
+    margin: 0 auto;
+}
+
+.info-content {
+    width: 70%;
+    min-height: 300px;
+}
+
+.image-content img {
+    min-height: 100%;
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+}
+
 @media (max-width:992px) {
     .w-lg-100 {
         width: 95% !important;
@@ -299,8 +321,6 @@ div nav div:nth-child(2) div:nth-child(1) {
 
 /* === Movie Create & Edit === */
 .form-container {
-    border: 2px solid #ffa500;
-    border-radius: 20px;
     margin: 50px auto;
     width: 95%;
     max-width: 1200px;

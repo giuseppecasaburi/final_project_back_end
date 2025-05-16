@@ -11,7 +11,7 @@ class UpdateMovieRequest extends FormRequest
         return [
             'title' => 'required|string|min:5',
             'story' => 'required|string|min:10',
-            'director_id' => 'required|exists:directors,id',
+            'director_id' => 'nullable|exists:directors,id',
             'duration' => 'required|integer|min:1',
             'year_of_publication' => 'required|date',
             'genres' => 'required|array|min:1',
@@ -30,7 +30,6 @@ class UpdateMovieRequest extends FormRequest
             'title.min' => 'Il titolo deve contenere almeno :min caratteri.',
             'story.required' => 'La trama è obbligatoria.',
             'story.min' => 'La trama deve contenere almeno :min caratteri.',
-            'director_id.required' => 'Il regista è obbligatorio.',
             'director_id.exists' => 'Il regista selezionato non è valido.',
             'duration.required' => 'La durata è obbligatoria.',
             'duration.integer' => 'La durata deve essere un numero intero.',

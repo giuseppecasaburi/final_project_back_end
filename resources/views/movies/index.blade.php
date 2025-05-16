@@ -8,7 +8,7 @@
                     <div class="card h-100 d-flex flex-column">
                         @if ($movie->image)
                             <img src="{{ asset('storage/' . $movie->image) }}" class="card-img-top" alt="{{ $movie->title }}"
-                                style="object-fit: cover; height: 200px;">
+                                style="object-fit: cover; object-position: top; height: 400px;">
                         @else
                             <div style="height: 200px; color: #ffa500" class="justify-content-center d-flex align-items-center">Nessuna immagine collegata</div>
                         @endif
@@ -24,6 +24,16 @@
                             @else
                                 <p class="card-text flex-grow-1">Nessun regista collegato</p>
                             @endif
+                            @if ($movie->genres)
+                                            <div class="pb-3">
+                                                @forelse ($movie->genres as $genre)
+                                                    <span class="mb-2 rounded-5 p-2 me-1 d-inline-block text-white"
+                                                        style="background-color: {{ $genre->color }}">{{ $genre->name }}</span>
+                                                @empty
+                                                    <p class="card-text flex-grow-1">Nessun genere collegato</p>
+                                                @endforelse
+                                            </div>
+                                        @endif
                             <a href="{{ route('movies.show', $movie->id) }}" class="btn btn-outline-warning mt-auto">Visualizza
                                 Film</a>
                         </div>

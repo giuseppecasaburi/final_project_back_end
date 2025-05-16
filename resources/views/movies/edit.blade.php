@@ -105,7 +105,7 @@
                 <div class="">
                     <label for="vote">Voto</label>
                     <input type="number" min="1" max="10" name="vote" id="" class="w-50 w-lg-100"
-                        value="{{ $movie->vote }}" placeholder="5">
+                        value="{{ $movie->vote }}" placeholder="Numero intero da 1 a 10">
                     @error('vote')
                         <div class="text-danger mt-1">{{ $message }}</div>
                     @enderror
