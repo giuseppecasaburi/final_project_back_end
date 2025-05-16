@@ -8,15 +8,15 @@
                     <div class="card h-100 d-flex flex-column">
                         @if ($director->image)
                             <img src="{{ asset('storage/' . $director->image) }}" class="card-img-top"
-                                alt="{{ $director->title }}" style="object-fit: cover; height: 200px;">
+                                alt="{{ $director->title }}" style="object-fit: cover; height: 400px;">
                         @else
-                            <div style="height: 200px; color: #ffa500" class="justify-content-center d-flex align-items-center">Nessuna immagine collegata</div>
+                            <div style="height: 400px; color: #ffa500" class="justify-content-center d-flex align-items-center">Nessuna immagine collegata</div>
                         @endif
                         <div class="card-header">
                             <h4 class="card-title">{{ $director->name }} {{ $director->surname }}</h4>
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <p>{{ $director->description }}</p>
+                            <p>{{ Str::limit(strip_tags($director->description), 100) }} <br><i style="color: #ffa500">Clicca qui sotto per continuare a leggere</i></p>
                             <a href="{{ route('directors.show', $director->id) }}"
                                 class="btn btn-outline-warning mt-auto">Visualizza Regista</a>
                         </div>

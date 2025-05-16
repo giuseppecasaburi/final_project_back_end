@@ -23,17 +23,17 @@
             <div class="info-content d-flex flex-column w-100 px-lg-3">
 
                 {{-- STORY --}}
-                <p class="fs-5">{{ $director->description }}</p>
+                <p class="fs-5"><strong>Storia: <br class="d-sm-none"></strong> {{ $director->description }}</p>
 
                 {{-- ANNO --}}
-                <p class="fs-5">Anno di nascita: {{ \Carbon\Carbon::parse($director->date_of_birth)->format('d/m/Y') }}
+                <p class="fs-5"><strong>Anno di nascita:</strong> {{ \Carbon\Carbon::parse($director->date_of_birth)->format('d/m/Y') }}
                 </p>
 
                 {{-- DURATA --}}
-                <span class="fs-5">Nazionalità: {{ $director->nationality }}</span>
+                <span class="fs-5"><strong>Nazionalità:</strong> {{ $director->nationality }}</span>
 
                 {{-- BOTTONI --}}
-                <div class="buttons mt-3 mt-lg-auto d-flex flex-column flex-sm-row gap-2">
+                <div class="buttons mt-3 mt-lg-auto d-flex flex-column flex-sm-row gap-2 align-items-center">
                     <a href="{{ route('directors.edit', $director->id) }}"
                         class="btn btn-outline-warning w-50 w-sm-auto">Modifica Regista</a>
 
@@ -82,9 +82,9 @@
                             <div class="card h-100 d-flex flex-column shadow-sm">
                                 @if ($related->image)
                                     <img src="{{ asset('storage/' . $related->image) }}" class="card-img-top"
-                                        alt="{{ $related->title }}" style="object-fit: cover; height: 200px;">
+                                        alt="{{ $related->title }}" style="object-fit: cover; object-position: top; height: 400px;">
                                 @else
-                                    <div style="height: 200px; color: #ffa500"
+                                    <div style="height: 400px; color: #ffa500"
                                         class="justify-content-center d-flex align-items-center">Nessuna immagine collegata
                                     </div>
                                 @endif

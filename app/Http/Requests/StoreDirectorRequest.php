@@ -17,7 +17,7 @@ class StoreDirectorRequest extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:50'],
             'surname' => ['required', 'string', 'min:3', 'max:50', "unique:directors,surname"],
             'date_of_birth' => ['required', 'date', 'before:today'],
-            'nationality' => ['required', 'string', 'min:2', 'max:50'],
+            'nationality' => ['required', 'string', 'min:4', 'max:50'],
             'description' => ['required', 'string', 'min:10', 'max:1000'],
             'image' => ['nullable', 'image', 'max:2048'], // max 2MB
             'remove_image' => "string"

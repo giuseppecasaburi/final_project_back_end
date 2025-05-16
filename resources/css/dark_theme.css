@@ -313,6 +313,15 @@ div nav div:nth-child(2) div:nth-child(1) {
     width: 100%;
 }
 
+.director-link {
+    transition: 0.3s ease-in-out;
+}
+
+.director-link:hover {
+    color: #ffa500;
+    transition: 0.3s ease-in-out;
+}
+
 @media (max-width:992px) {
     .w-lg-100 {
         width: 95% !important;

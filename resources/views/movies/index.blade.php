@@ -10,7 +10,7 @@
                             <img src="{{ asset('storage/' . $movie->image) }}" class="card-img-top" alt="{{ $movie->title }}"
                                 style="object-fit: cover; object-position: top; height: 400px;">
                         @else
-                            <div style="height: 200px; color: #ffa500" class="justify-content-center d-flex align-items-center">Nessuna immagine collegata</div>
+                            <div style="height: 400px; color: #ffa500" class="justify-content-center d-flex align-items-center">Nessuna immagine collegata</div>
                         @endif
                         <div class="card-header">
                             <h4 class="card-title">{{ $movie->title }}</h4>

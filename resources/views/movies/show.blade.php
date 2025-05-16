@@ -36,8 +36,8 @@
 
                 {{-- REGISTA --}}
                 @if ($movie->director)
-                    <h5 class="mb-3"><strong>Regista:</strong> {{ $movie->director->name }}
-                        {{ $movie->director->surname }}</h5>
+                    <h5 class="mb-3"><strong>Regista:</strong> 
+                        <a class="director-link" href="{{ route("directors.show", $movie->director->id) }}">{{ $movie->director->name }} {{ $movie->director->surname }}</a></h5>
                 @else
                     <h5 class="mb-3"><strong>Nessun regista collegato</strong></h5>
                 @endif
