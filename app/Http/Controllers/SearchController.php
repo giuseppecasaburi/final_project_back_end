@@ -59,9 +59,11 @@ class SearchController extends Controller
     public function apiSearch(Request $request)
     {
         // Prendo i parametri
-        $search    = $request->query('query_search');
-        $genreIds  = $request->input('genres', []);
+        $search      = $request->query('query_search');
+        $genreIds    = $request->input('genres', []);
         $directorIds = $request->input('directors', []);
+        $moviesPage  = $request->input('moviesPage', 1);
+        $directorsPage = $request->input('directorsPage', 1);
 
         // Costruisco la query dei film
         $movies = Movie::query()
@@ -78,19 +80,19 @@ class SearchController extends Controller
             ))
             // filtro registi
             ->when(!empty($directorIds), fn($q) => $q->whereIn('director_id', $directorIds))
-            ->paginate(9);
+            ->paginate(6, ['*'], 'moviesPage', $moviesPage);
 
         // Se c'è ricerca testuale, cerco anche i registi matching
         $directors = collect();
         if ($search) {
             $directors = Director::where('name', 'like', "%{$search}%")
                 ->orWhere('surname', 'like', "%{$search}%")
-                ->paginate(9);
+                ->paginate(6, ['*'], 'directorsPage', $directorsPage);
         }
 
         return response()->json([
-        'movies' => $movies,
-        'directors' => $directors
-    ]);
+            'movies' => $movies,
+            'directors' => $directors
+        ]);
     }
 }
