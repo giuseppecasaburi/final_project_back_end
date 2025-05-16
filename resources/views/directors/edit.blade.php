@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', "Modifica " . $director->name . " " . $director->name)
 
 @section('content')
     <div class="container">

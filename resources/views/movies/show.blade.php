@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $movie->title)
 @section('content')
     <div class="container my-4">
         {{-- HEADER --}}

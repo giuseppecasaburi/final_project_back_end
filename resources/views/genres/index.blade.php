@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Catalogo Generi')
+
 @section('content')
     <div class="container my-3">
         <h2 class="mb-4 d-flex flex-column flex-sm-row align-items-center">Catalogo Generi <a

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Catalogo Films')
 @section('content')
 <div class="container my-3">
         <h2 class="mb-4 d-flex flex-column flex-sm-row align-items-center">Catalogo Films <a href="{{route('movies.create')}}" class="btn btn-outline-warning ms-0 mt-3 mt-sm-0 ms-sm-3">Aggiungi un Film</a></h2>

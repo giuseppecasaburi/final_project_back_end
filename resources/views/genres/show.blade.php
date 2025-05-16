@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $genre->name)
 
 @section('content')
     <div class="container px-3 px-sm-0 my-4">
@@ -60,9 +61,9 @@
                             <div class="card h-100 d-flex flex-column shadow-sm">
                                 @if ($related->image)
                                     <img src="{{ asset('storage/' . $related->image) }}" class="card-img-top"
-                                        alt="{{ $related->title }}" style="object-fit: cover; height: 200px;">
+                                        alt="{{ $related->title }}" style="object-fit: cover; object-position: top; height: 400px;">
                                 @else
-                                    <div style="height: 200px; color: #ffa500"
+                                    <div style="height: 400px; color: #ffa500"
                                         class="justify-content-center d-flex align-items-center">Nessuna immagine collegata
                                     </div>
                                 @endif

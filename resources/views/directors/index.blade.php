@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Catalogo Registi')
+
 @section('content')
     <div class="container my-3">
         <h2 class="mb-4 d-flex flex-column flex-sm-row align-items-center">Catalogo Registi <a href="{{route('directors.create')}}" class="btn btn-outline-warning ms-0 mt-3 mt-sm-0 ms-sm-3">Aggiungi un Regista</a></h2>

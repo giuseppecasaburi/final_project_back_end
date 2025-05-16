@@ -1,5 +1,5 @@
-
 @extends('layouts.app')
+@section('title', "Modifica " . $genre->name)
 
 @section('content')
     <div class="container">
