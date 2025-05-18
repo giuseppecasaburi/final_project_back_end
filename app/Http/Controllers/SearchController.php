@@ -70,7 +70,7 @@ class SearchController extends Controller
             // filtro testo
             ->when($search, fn($q) => $q->where(
                 fn($q2) =>
-                $q2->where('title', 'like', "%{$search}%")
+                $q2->where('title', 'like', "%{$search}%")->with("genres")
             ))
             // filtro generi
             ->when(!empty($genreIds), fn($q) => $q->whereHas(

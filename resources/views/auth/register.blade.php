@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section("title", "Register-MoovieMood")
 
 @section('content')
 <div id="register" class="container mt-5 pt-3">

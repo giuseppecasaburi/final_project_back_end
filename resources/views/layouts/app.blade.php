@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/png" href="/storage/site_image/favicon-32x32.png" />
     <title>@yield('title')</title>
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm ms-nav-bar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="storage/site_image/logo.png" alt="Logo" style="height: 40px; width: auto;">
+                    <img src="/storage/site_image/logo.png" alt="Logo" style="height: 40px; width: auto;">
                 </a>
 
                 @if (request()->is('login') || request()->is('register'))
@@ -116,7 +116,7 @@
         @yield('content')
     </main>
 
-    @yield("script")
+    @yield('script')
 </body>
 
 </html>

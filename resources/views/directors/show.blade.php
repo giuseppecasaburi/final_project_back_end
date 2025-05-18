@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', $director->name . " " . $director->surname)
+@section('title', $director->name . ' ' . $director->surname)
 
 @section('content')
     <div class="container my-4">
@@ -27,7 +27,8 @@
                 <p class="fs-5"><strong>Storia: <br class="d-sm-none"></strong> {{ $director->description }}</p>
 
                 {{-- ANNO --}}
-                <p class="fs-5"><strong>Anno di nascita:</strong> {{ \Carbon\Carbon::parse($director->date_of_birth)->format('d/m/Y') }}
+                <p class="fs-5"><strong>Anno di nascita:</strong>
+                    {{ \Carbon\Carbon::parse($director->date_of_birth)->format('d/m/Y') }}
                 </p>
 
                 {{-- DURATA --}}
@@ -83,7 +84,8 @@
                             <div class="card h-100 d-flex flex-column shadow-sm">
                                 @if ($related->image)
                                     <img src="{{ asset('storage/' . $related->image) }}" class="card-img-top"
-                                        alt="{{ $related->title }}" style="object-fit: cover; object-position: top; height: 400px;">
+                                        alt="{{ $related->title }}"
+                                        style="object-fit: cover; object-position: top; height: 400px;">
                                 @else
                                     <div style="height: 400px; color: #ffa500"
                                         class="justify-content-center d-flex align-items-center">Nessuna immagine collegata
@@ -96,6 +98,22 @@
                                     <p class="card-text flex-grow-1">Anno di pubblicazione:
                                         {{ \Carbon\Carbon::parse($related->year)->format('d/m/Y') }}</p>
                                     <span>Durata: {{ $related->duration }} minuti</span><br>
+                                    @if ($related->director)
+                                        <p class="card-text flex-grow-1">{{ $related->director['name'] }}
+                                            {{ $related->director['surname'] }}</p>
+                                    @else
+                                        <p class="card-text flex-grow-1">Nessun regista collegato</p>
+                                    @endif
+                                    @if ($related->genres)
+                                        <div class="pb-3">
+                                            @forelse ($related->genres as $genre)
+                                                <span class="mb-2 rounded-5 p-2 me-1 d-inline-block text-white"
+                                                    style="background-color: {{ $genre->color }}">{{ $genre->name }}</span>
+                                            @empty
+                                                <p class="card-text flex-grow-1">Nessun genere collegato</p>
+                                            @endforelse
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="card-footer ">
                                     <a href="{{ route('movies.show', $related->id) }}"

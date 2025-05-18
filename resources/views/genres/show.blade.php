@@ -34,7 +34,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                         </div>
                         <div class="modal-body">
-                            Sei sicuro di voler eliminare il genere <strong>{{ $genre->name }}</strong>? Verrà rimosso anche da tutti i film a cui è collegato.
+                            Sei sicuro di voler eliminare il genere <strong>{{ $genre->name }}</strong>? Verrà rimosso
+                            anche da tutti i film a cui è collegato.
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
@@ -61,7 +62,8 @@
                             <div class="card h-100 d-flex flex-column shadow-sm">
                                 @if ($related->image)
                                     <img src="{{ asset('storage/' . $related->image) }}" class="card-img-top"
-                                        alt="{{ $related->title }}" style="object-fit: cover; object-position: top; height: 400px;">
+                                        alt="{{ $related->title }}"
+                                        style="object-fit: cover; object-position: top; height: 400px;">
                                 @else
                                     <div style="height: 400px; color: #ffa500"
                                         class="justify-content-center d-flex align-items-center">Nessuna immagine collegata
@@ -74,6 +76,22 @@
                                     <p class="card-text flex-grow-1">Anno di pubblicazione:
                                         {{ \Carbon\Carbon::parse($related->year)->format('d/m/Y') }}</p>
                                     <span>Durata: {{ $related->duration }} minuti</span><br>
+                                    @if ($related->director)
+                                        <p class="card-text flex-grow-1">{{ $related->director['name'] }}
+                                            {{ $related->director['surname'] }}</p>
+                                    @else
+                                        <p class="card-text flex-grow-1">Nessun regista collegato</p>
+                                    @endif
+                                    @if ($related->genres)
+                                        <div class="pb-3">
+                                            @forelse ($related->genres as $genre)
+                                                <span class="mb-2 rounded-5 p-2 me-1 d-inline-block text-white"
+                                                    style="background-color: {{ $genre->color }}">{{ $genre->name }}</span>
+                                            @empty
+                                                <p class="card-text flex-grow-1">Nessun genere collegato</p>
+                                            @endforelse
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="card-footer ">
                                     <a href="{{ route('movies.show', $related->id) }}"
