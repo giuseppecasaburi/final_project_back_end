@@ -106,7 +106,7 @@
 
         {{-- LINK TORNA ALLA HOME --}}
         <div class="mt-3">
-            <a href="{{ route('movies.index') }}" class="btn btn-outline-secondary w-sm-auto">Torna alla home</a>
+            <a href="{{ route('movies.index') }}" class="btn btn-outline-secondary w-sm-auto">Torna al catalogo</a>
         </div>
     </div>
 @endsection

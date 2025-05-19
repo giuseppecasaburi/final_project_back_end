@@ -46,7 +46,7 @@ class UserController extends Controller
     public function showDirector($id)
     {
         // Preleva un singolo film con tutti i generi annessi e il regista
-        $director = Director::with(["movies"])->FindOrFail($id);
+        $director = Director::with(["movies.genres"])->findOrFail($id);
 
         return response()->json([
             "success" => true,
