@@ -13,20 +13,6 @@ class Movie extends Model
 
     use SoftDeletes;
 
-    protected static function booted() {
-
-        // Metodo eseguito al forceDeleted di un'istanza di Movie
-        static::forceDeleted(function (Movie $movie){
-            // Controllo se l'immagine esiste
-            if($movie->image && Storage::disk("public")->exists($movie->image)) {
-                Storage::disk("public")->delete($movie->image);
-            }
-
-            // Elimina i collegamenti con i generi
-            $movie->genres()->detach();
-        });
-    }
-
     // Definizione relazione 1:N con la tabella Directors attraverso il model
     public function director() {
         return $this->belongsTo(Director::class);

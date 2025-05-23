@@ -5,6 +5,9 @@
     <div class="container">
         <div class="form-container">
             <h2 class="text-center mt-4 mb-2">Aggiungi un nuovo Genere</h2>
+            <p class="notice-required">
+                Tutti i campi contrassegnati dal simbolo <strong>*</strong> sono obbligatori
+            </p>
             <form action="{{ route('genre.store') }}" method="POST" class="p-lg-3">
                 @csrf
 
@@ -13,7 +16,7 @@
                 @endif
 
                 <div>
-                    <label for="name">Genere</label>
+                    <label for="name">Genere*</label>
                     <input type="text" name="name" id="" placeholder="Horror" required>
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
@@ -21,7 +24,7 @@
                 </div>
 
                 <div>
-                    <label for="color">Colore HEX</label>
+                    <label for="color">Colore HEX*</label>
                     <input type="text" name="color" id="" placeholder="#fa5000" required maxlength="7">
                     @error('color')
                         <div class="text-danger">{{ $message }}</div>

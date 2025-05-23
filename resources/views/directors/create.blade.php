@@ -5,6 +5,9 @@
     <div class="container">
         <div class="form-container">
             <h2 class="text-center my-4">Aggiungi un nuovo regista</h2>
+            <p class="notice-required">
+                Tutti i campi contrassegnati dal simbolo <strong>"*"</strong> sono obbligatori
+            </p>
 
             <form action="{{ route('directors.store') }}" method="POST" enctype="multipart/form-data" class="p-lg-3">
                 @csrf
@@ -15,7 +18,7 @@
                 @endif
 
                 <div>
-                    <label for="name">Nome</label>
+                    <label for="name">Nome*</label>
                     <input type="text" name="name" id="" required placeholder="Quentin" class="w-50 w-lg-100"
                         value="{{ old('name') }}">
                     @error('name')
@@ -24,7 +27,7 @@
                 </div>
 
                 <div>
-                    <label for="surname">Cognome</label>
+                    <label for="surname">Cognome*</label>
                     <input type="text" name="surname" id="" required placeholder="Tarantino"
                         class="w-50 w-lg-100" value="{{ old('surname') }}">
                     @error('surname')
@@ -33,7 +36,7 @@
                 </div>
 
                 <div>
-                    <label for="date_of_birth">Data di nascita</label>
+                    <label for="date_of_birth">Data di nascita*</label>
                     <input type="date" name="date_of_birth" id="" required class="w-50 w-lg-100"
                         value="{{ old('date_of_birth') }}">
                     @error('date_of_birth')
@@ -42,7 +45,7 @@
                 </div>
 
                 <div>
-                    <label for="nationality">Nazionalità</label>
+                    <label for="nationality">Nazionalità*</label>
                     <input type="text" name="nationality" id="" required placeholder="Statunitense"
                         class="w-50 w-lg-100" value="{{ old('nationality') }}">
                     @error('nationality')
@@ -51,7 +54,7 @@
                 </div>
 
                 <div>
-                    <label for="description">Descrizione del regista</label>
+                    <label for="description">Descrizione del regista*</label>
                     <textarea name="description" id="" cols="30" rows="10" required placeholder="Noto autore dei film..."
                         class="w-50 w-lg-100">{{ old('description') }}</textarea>
                     @error('description')

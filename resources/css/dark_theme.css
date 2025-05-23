@@ -426,3 +426,11 @@ div nav div:nth-child(2) div:nth-child(1) {
     padding: 2.5px 10px;
     border-radius: 10px;
 }
+
+.notice-required {
+  font-size: 0.9rem;
+  color: #ffa500;
+  padding: 0 12px;
+  margin-bottom: 1rem;
+  text-align: center;
+}

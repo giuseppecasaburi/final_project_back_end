@@ -35,7 +35,7 @@ class DashboardController extends Controller
                 'route' => 'movies.create',
                 'img' => 'film.jpg',
                 'title' => 'Film',
-                'text' => 'ggiungi un nuovo film, con titolo, regista, genere e immagine.'
+                'text' => 'Aggiungi un nuovo film, con titolo, regista, genere e immagine.'
             ], 
             [
                 'route' => 'directors.create',

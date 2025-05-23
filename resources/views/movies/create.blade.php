@@ -13,6 +13,9 @@
     <div class="container">
         <div class="form-container">
             <h2 class="text-center my-4">Aggiungi un nuovo Film</h2>
+            <p class="notice-required">
+                Tutti i campi contrassegnati dal simbolo <strong>"*"</strong> sono obbligatori
+            </p>
             <form action="{{ route('movies.store') }}" method="POST" enctype="multipart/form-data" class="p-lg-3">
                 @csrf
 
@@ -33,7 +36,7 @@
                 </div>
 
                 <div class="">
-                    <label for="title">Titolo</label>
+                    <label for="title">Titolo*</label>
                     <input type="text" name="title" id="" required class="w-50 w-lg-100"
                         value="{{ old('title') }}" required>
                     @error('title')
@@ -42,7 +45,7 @@
                 </div>
 
                 <div class="">
-                    <label for="story">Trama</label>
+                    <label for="story">Trama*</label>
                     <textarea name="story" id="" cols="30" rows="10" class="w-50 w-lg-100" required>{{ old('story') }}</textarea>
                     @error('story')
                         <div class="text-danger mt-1">{{ $message }}</div>
@@ -50,7 +53,7 @@
                 </div>
 
                 <div class="">
-                    <label for="year_of_publication">Anno di uscita</label>
+                    <label for="year_of_publication">Anno di uscita*</label>
                     <input type="date" name="year_of_publication" id="" required class="w-50 w-lg-100"
                         value="{{ old('year_of_publication') }}">
                     @error('year_of_publication')
@@ -59,7 +62,7 @@
                 </div>
 
                 <div class="">
-                    <label for="duration">Durata (espressa in minuti)</label>
+                    <label for="duration">Durata (espressa in minuti)*</label>
                     <input type="number" min="50" max="200" name="duration" id="" class="w-50 w-lg-100"
                         required value="{{ old('duration') }}">
                     @error('duration')
@@ -68,7 +71,7 @@
                 </div>
 
                 <div class="w-50 w-lg-100 mx-auto">
-                    <label for="genres">Genere</label>
+                    <label for="genres">Genere*</label>
                     <select name="genres[]" multiple class="form-control select2" id="" required>
                         @foreach ($genres as $genre)
                             <option value="{{ $genre->id }}"
