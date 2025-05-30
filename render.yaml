@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: laravel-backend
+    env: php
+    buildCommand: |
+      composer install --no-dev
+      php artisan key:generate
+      php artisan migrate --force
+    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        fromService:
+          name: mysql-db
+          type: database
+          property: host
+      - key: DB_PORT
+        fromService:
+          name: mysql-db
+          type: database
+          property: port
+      - key: DB_DATABASE
+        fromService:
+          name: mysql-db
+          type: database
+          property: database
+      - key: DB_USERNAME
+        fromService:
+          name: mysql-db
+          type: database
+          property: user
+      - key: DB_PASSWORD
+        fromService:
+          name: mysql-db
+          type: database
+          property: password
+
+databases:
+  - name: mysql-db
+    type: mysql
